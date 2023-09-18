@@ -20,6 +20,7 @@ if setup_environment:
         ['pip','install','openai'],
         ['pip','install','fastapi','nest-asyncio','pyngrok','uvicorn']
         ['pip','install','python-multipart']
+        ['pip','install','tiktoken']
     ]
     for process in all_process:
         running = subprocess.run(process,stdout=subprocess.PIPE).stdout.decode('utf-8')
