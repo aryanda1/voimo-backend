@@ -86,12 +86,12 @@ def next_seed(args):
         args.seed = random.randint(0, 2**32 - 1)
     return args.seed
 
-def render_animation(args, anim_args,device,model,half_precision=True):
+def render_animation(args, anim_args,device,model,api_key,half_precision=True):
     from animSett import DeformAnimKeys
     from utils import sample_from_cv2,sample_to_cv2,anim_frame_warp_2d,maintain_colors,add_noise,generate
     # import 
     # animations use key framed prompts
-    animation_prompts = prompts(anim_args.max_frames,args.theme,args.artist,args.option)
+    animation_prompts = prompts(anim_args.max_frames,api_key,args.theme,args.artist,args.option)
     args.prompts = animation_prompts
     # expand key frame strings to values
     keys = DeformAnimKeys(anim_args)

@@ -10,7 +10,7 @@ from upscale import upscale as upsc
 import torch
 output_path = "/content/output"
 os.makedirs(output_path, exist_ok=True)
-def musictoVid(device,model,mp3_path,theme,artist,option,upscale,timestring):
+def musictoVid(device,model,mp3_path,theme,artist,option,upscale,timestring,api_key):
   from animSett import DeforumAnimArgs
   from loadSetting import DeforumArgs
   # print(f"output_path: {output_path}")
@@ -21,7 +21,7 @@ def musictoVid(device,model,mp3_path,theme,artist,option,upscale,timestring):
 
   keyfr,maxFr = keyFrames(instrumentPath)
   if option<2:
-    saveLyrics(vocalsPath,output_path)
+    saveLyrics(vocalsPath,output_path,api_key)
   #   whisp.transcribe(vocalsPath)
   args_dict = DeforumArgs(output_path)
   anim_args_dict = DeforumAnimArgs(maxFr,keyfr)
@@ -42,7 +42,7 @@ def musictoVid(device,model,mp3_path,theme,artist,option,upscale,timestring):
   gc.collect()
   torch.cuda.empty_cache()
   os.makedirs(os.path.join(args.outdir,'images'))
-  render_animation(args, anim_args,device,model)
+  render_animation(args, anim_args,device,model,api_key)
   if upscale:
     upsc(os.path.join(args.outdir,'images'), model_name="RealESRGAN_x4plus", out_scale='2')
   return create_video(args,anim_args,mp3_path,upscale)
