@@ -44,7 +44,7 @@ def keyFrames(path,fps=12,fn="1+pow(x,4)"):
     for idx,data in enumerate(filterData):
         s+='{idx}: ({0:.2f}), '.format(data,idx=idx)
     s = s[:-2]
-    maxFrames = s[-11:-8]
+    maxFrames = s.split(',')[-1].split(':')[0]
     return s,int(maxFrames)
     # file = open("keyframes.txt", "w")
     # a = file.write(s)
