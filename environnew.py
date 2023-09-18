@@ -17,7 +17,9 @@ if setup_environment:
         ['git', 'clone', 'https://github.com/MSFTserver/pytorch3d-lite.git'],
         ['apt', 'install', 'ffmpeg'],
         ['pip', 'install', 'spleeter'],
-        ['pip','install','openai']
+        ['pip','install','openai'],
+        ['pip','install','fastapi','nest-asyncio','pyngrok','uvicorn']
+        ['pip','install','python-multipart']
     ]
     for process in all_process:
         running = subprocess.run(process,stdout=subprocess.PIPE).stdout.decode('utf-8')
